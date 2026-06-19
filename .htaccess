@@ -1,0 +1,32 @@
+# ============================================================
+# Apache Konfigurasi & Sekuriti Guard - Dilla Fruit's Padang
+# Skala Pengamanan Berkas Tugas Akhir / Skripsi
+# ============================================================
+
+# 1. Matikan Fitur Directory Browsing (Mencegah user melihat daftar isi folder jika tidak ada index.php)
+Options -Indexes
+
+# 2. Set Halaman Utama Default Root jika diakses langsung
+DirectoryIndex index.php
+
+# 3. Proteksi Folder Konfigurasi Database & Kredensial
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Jika ada yang mencoba menembak folder config/ langsung lewat URL browser, block total!
+    RewriteRule ^config/.*$ - [F,L]
+    
+    # Jika ada yang mencoba menembak file .sql atau berkas mentah skema database, block total!
+    RewriteRule \.(sql|json|bak|log)$ - [F,L]
+</IfModule>
+
+# 4. Pengamanan Tambahan Khusus untuk Server Apache Jadul/Standar (Bypass mod_rewrite)
+<FilesMatch "\.(sql|json|bak|log)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+<Files "credentials.php">
+    Order Allow,Deny
+    Deny from all
+</Files>
