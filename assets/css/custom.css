@@ -1,0 +1,47 @@
+
+:root {
+  --color-brand: #16a34a;
+  --color-brand-hover: #15803d;
+}
+
+/* Utilitas utility tambahan warna brand */
+.text-brand {
+  color: var(--color-brand);
+}
+.bg-brand {
+  background-color: var(--color-brand);
+}
+.hover\:bg-brand-hover:hover {
+  background-color: var(--color-brand-hover);
+}
+
+/* Animasi Halus untuk Transisi Pop-Up Toast */
+.toast-transition {
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.3s ease-out;
+}
+
+/* Custom Scrollbar biar tampilan dashboard kasir & katalog lebih rapi */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Aturan cetak cetak nota kasir (Sembunyikan tombol saat cetak print Windows) */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
